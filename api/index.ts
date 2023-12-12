@@ -18,6 +18,14 @@ config()
 export const app: Application = express()
 const PORT = 5050
 const URL = process.env.MONGODB_URL as string
+mongoose
+  .connect(URL)
+  .then(() => {
+    console.log('Database connected')
+  })
+  .catch((err: Error) => {
+    console.log('MongoDB connection error, ', err)
+  })
 
 app.use(myLogger)
 app.use(express.urlencoded({ extended: true })), app.use(express.json()), app.use(cookieParser())
@@ -40,16 +48,9 @@ app.use((req, res, next) => {
   if (!req.route)
   return next(ApiError.badRequest(404, 'Rout not found'))
 })
-// app.use(apiErrorHandler)
+app.use(apiErrorHandler)
 
-mongoose
-  .connect(URL)
-  .then(() => {
-    console.log('Database connected')
-  })
-  .catch((err: Error) => {
-    console.log('MongoDB connection error, ', err)
-  })
+
 
 
 
