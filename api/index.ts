@@ -23,7 +23,7 @@ app.use(myLogger)
 app.use(express.urlencoded({ extended: true })), app.use(express.json()), app.use(cookieParser())
 
 
-
+app.use(cors());
 app.get('/', (req, res) => {
   res.send('healthe checkup')
 })
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   if (!req.route)
   return next(ApiError.badRequest(404, 'Rout not found'))
 })
-app.use(apiErrorHandler)
+// app.use(apiErrorHandler)
 
 mongoose
   .connect(URL)
