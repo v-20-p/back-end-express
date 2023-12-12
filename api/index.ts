@@ -13,19 +13,14 @@ import myLogger from '../src/middlewares/logger'
 import cookieParser from 'cookie-parser'
 import { chatRoute } from '../src/routers/chatRouter'
 import ApiError from '../src/errors/ApiError'
+import { connectDB } from '../src/config/db'
 
 config()
 export const app: Application = express()
 const PORT = 5050
 const URL = process.env.MONGODB_URL as string
-mongoose
-  .connect(URL)
-  .then(() => {
-    console.log('Database connected')
-  })
-  .catch((err: Error) => {
-    console.log('MongoDB connection error, ', err)
-  })
+
+connectDB()
 
 app.use(myLogger)
 app.use(express.urlencoded({ extended: true })), app.use(express.json()), app.use(cookieParser())
@@ -51,7 +46,9 @@ app.use((req, res, next) => {
 app.use(apiErrorHandler)
 
 
-
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`)
+})
 
 
   
