@@ -4,15 +4,15 @@ import { config } from 'dotenv'
 import cors from "cors"
 
 import 'dotenv/config'
-import usersRouter from '../src/routers/usersRouter'
-import productsRouter from '../src/routers/productsRouter'
-import ordersRouter from '../src/routers/ordersRouter'
-import categoreisRouter from '../src/routers/categoriesRouter'
-import apiErrorHandler from '../src/middlewares/errorHandler'
-import myLogger from '../src/middlewares/logger'
+import usersRouter from '../routers/usersRouter'
+import productsRouter from '../routers/productsRouter'
+import ordersRouter from '../routers/ordersRouter'
+import categoreisRouter from '../routers/categoriesRouter'
+import apiErrorHandler from '../middlewares/errorHandler'
+import myLogger from '../middlewares/logger'
 import cookieParser from 'cookie-parser'
-import { chatRoute } from '../src/routers/chatRouter'
-import ApiError from '../src/errors/ApiError'
+import { chatRoute } from '../routers/chatRouter'
+import ApiError from '../errors/ApiError'
 
 config()
 export const app: Application = express()
