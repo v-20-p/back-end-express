@@ -22,11 +22,12 @@ const URL = process.env.MONGODB_URL as string
 
 connectDB()
 
-app.use(myLogger)
-app.use(express.urlencoded({ extended: true })), app.use(express.json()), app.use(cookieParser())
-
-
+// app.use(myLogger)
 app.use(cors());
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(express.json())
+
 app.get('/', (req, res) => {
   res.send('healthe checkup')
 })
@@ -46,9 +47,6 @@ app.use((req, res, next) => {
 app.use(apiErrorHandler)
 
 
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`)
-})
 
 
   
